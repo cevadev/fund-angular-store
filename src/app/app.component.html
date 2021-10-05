@@ -1,3 +1,26 @@
+<h1>Formularios Angular</h1>
+<form (ngSubmit)="onRegister()" #myForm="ngForm">
+  <div class="input-group">
+    <label for="name">Nombre</label>
+    <input type="text" name="name" required id="name" [(ngModel)]="register.name" />
+    <p>Mensaje de error</p>
+  </div>
+  <div class="input-group">
+    <label for="email">Email</label>
+    <input type="text" name="email" required id="email" [(ngModel)]="register.email" />
+    <p>Mensaje de error</p>
+  </div>
+  <div class="input-group">
+    <label for="password">Password</label>
+    <input type="text" name="password" required id="password" [(ngModel)]="register.password" />
+    <p>Mensaje de error</p>
+  </div>
+  <!--deshabilitamos el boton registar si el formulario es invalido, es decir, no tiene sus campos llenos-->
+  <button [disabled]="myForm.invalid" type="submit">Registrar</button>
+  <button type="button">Action</button>
+</form>
+
+<hr/>
 <h1>Dynamic Class & Styles</h1>
 <input type="text" required #inputName2="ngModel" [(ngModel)]="person.name" />
 <p class="message--error" [class.invalid]="inputName2.invalid">El campo es requerido</p>
