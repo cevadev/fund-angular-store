@@ -1,8 +1,90 @@
+<h1>Dynamic Class & Styles</h1>
+<input type="text" required #inputName2="ngModel" [(ngModel)]="person.name" />
+<p class="message--error" [class.invalid]="inputName2.invalid">El campo es requerido</p>
+<br/>
+<label>Nombre</label>
+<input type="text" required #inputName3="ngModel" [(ngModel)]="person.name" />
+<p [style.font-style]="inputName3.invalid ? 'italic' : 'normal'">Texto texto texto</p>
+<div [class.styles]>
+  <div>
+    <input type="text" [(ngModel)]="widthImg" />
+  </div>
+  <div>
+    <img [style.width.px]="widthImg" [src]="image" width="75" />
+  </div>
+</div>
+<hr/>
+<h1>Estructura de control ngSwitch</h1>
+<input type="text" required [(ngModel)]="newName" />
+<div [ngSwitch]="person.name">
+  <p *ngSwitchCase="'Nicolás'">La persona es Nicolás</p>
+  <p *ngSwitchCase="'Julian'"> La persona es Julian</p>
+  <p *ngSwitchCase="'Mario'">La persona es Mario</p>
+  <p *ngSwitchCase="'Antonio'">La persona es Antonio</p>
+  <p *ngSwitchCase="'Priscila'">La persona es Priscila</p>
+  <p>No hay coincidencias</p>
+</div>
+<hr/>
+<h1>Estructura de control *ngFor Objects</h1>
+<div class="products--grid">
+  <div *ngFor="let product of products; index as p">
+    <img [src]="product.image" alt="product image">
+    <h2>Price: {{product.price}}</h2>
+    <p>Product name: {{product.name}}</p>
+  </div>
+</div>
+<br/>
+<h1>Estructura de control *ngFor</h1>
+<input type="text" required [(ngModel)]="newName" />
+<button (click)="addNewName()">Add new name</button>
+<ul>
+  <!-- alerta cuando la lista está vacia -->
+  <li *ngIf="names.length === 0">No hay elementos en la lista Names</li>
+  <li *ngFor="let name of names; index as i">
+    {{i}} {{name}}
+    <button (click)="deleteName(i)">delete</button>
+  </li>
+</ul>
+
+<br/>
+<h1>Estructuras de control *ngIf</h1>
+<input type="text" required [(ngModel)]="person.name" />
+<p *ngIf="person.name === 'Carlos'">Soy Carlos V.</p>
+<p *ngIf="person.name === 'Julian' && person.age >= 18; else myBlock">Soy Julían</p>
+<ng-template #myBlock>
+  <p>Bloque del else</p>
+</ng-template>
+<br/>
+
 <h1>Eventos</h1>
 <button [disabled]="btnDisabled">Enviar</button>
 <button (click)="toogleButton()">Toogle button</button>
 <p>Edad {{person.age}}</p>
 <button (click)="increase()">Age++</button>
+<div class="box" (scroll)="onScroll($event)">
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla at molestie neque. Quisque quis eros sem. In molestie et
+    turpis et vehicula. Sed suscipit magna non erat euismod, at dapibus odio ornare. Donec pulvinar, nunc sit amet molestie
+    ultrices, ligula lorem viverra sapien, a porta eros tortor eget enim. Proin eleifend justo in massa pulvinar tincidunt.
+    Vestibulum consectetur purus eget arcu tincidunt venenatis. Fusce ac tortor nulla.
+
+    Donec id mattis nisi, vitae pulvinar dui. Nunc at nibh purus. Fusce porta turpis suscipit neque elementum, vitae iaculis
+    lectus faucibus. Integer varius lorem justo, ut posuere elit fringilla id. Proin posuere diam nisi, in scelerisque orci
+    ullamcorper a. Nunc enim mauris, fringilla ut fringilla a, semper vitae neque. Vivamus commodo elit augue, a sodales
+    purus aliquam vitae. Duis ornare lorem quis volutpat consectetur. Interdum et malesuada fames ac ante ipsum primis in
+    faucibus. Sed vel purus eu felis auctor iaculis vel ac nulla. Cras ac tortor augue.
+  </p>
+</div>
+<p>{{person.name}}</p>
+<input type="text" [value]="person.name" (keyup)="changeName($event)" />
+<br/>
+<h1>Evento con ngModel</h1>
+<p>{{person.name}}</p>
+<input type="text" required #inputName="ngModel" [(ngModel)]="person.name" />
+<p>Valid: {{ inputName.valid }}</p>
+<p>Edad {{person.age}}</p>
+<input type="number" min="10" max="18" required #inputAge="ngModel" [(ngModel)]="person.age" />
+<p>Valid: {{ inputAge.valid }}</p>
 
 <h1>Propiedades: Property binding</h1>
 <input type="text" [value]="person.name" />
